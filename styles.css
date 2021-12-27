@@ -64,7 +64,7 @@ button {
 
 .food{
     position: absolute;
-    margin-top:54%;
+    bottom:0%;
     width:fit-content;
 }
 
@@ -78,10 +78,10 @@ button {
 
 @keyframes fall-down{
     from{
-        margin-top:20%;
+        bottom:80%;
     }
     to{
-        margin-top:54%;
+        bottom:0%;
     }
 }
 
