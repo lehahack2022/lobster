@@ -1,0 +1,176 @@
+h1 {
+    color: #000000;
+    font-family: arial, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+h2 {
+    color: #646464;
+    font-family: arial, sans-serif;
+    font-size: 12px;
+}
+
+button {
+    border-radius:12px;
+    border: none;
+    background-color:#719c9e;
+    color:#ffffff;
+    padding: 8px;
+}
+
+#tank {
+    position: relative;
+    height:50%;
+    width:50%;
+    margin-left:25%;
+    margin-top:15%;
+    border-left:#719c9e 5px solid;
+    border-right:#719c9e 5px solid;
+    border-bottom:#719c9e 5px solid;
+    border-top:#acd2d4 3px double;
+    background-color:#a8d9db;
+}
+
+#button-container{
+    margin-top:-10%;
+    display:flex;
+    justify-content: space-evenly;
+}
+
+#air{
+    position: absolute;
+    top: 0px;
+    height:6%;
+    width:100%;
+    background-color:#e1f6f7;
+}
+
+#sand{
+    position: absolute;
+    bottom: 0px;
+    height:8%;
+    width:100%;
+    background-color:rgb(231, 228, 188);
+}
+
+#lobster{
+    position: absolute;
+    bottom: -45px;
+    font-size:40px;
+    width:fit-content;
+    transform:rotate(90deg);
+}
+
+.food{
+    position: absolute;
+    margin-top:54%;
+    width:fit-content;
+}
+
+.hidden{
+   display: none;
+}
+
+.falling{
+    animation:fall-down 2s;
+}
+
+@keyframes fall-down{
+    from{
+        margin-top:20%;
+    }
+    to{
+        margin-top:54%;
+    }
+}
+
+.left{
+    margin-left:15%;
+}
+
+.right{
+    margin-left:75%;
+}
+
+.middle{
+    margin-left:45%;
+}
+
+.left-right{
+    animation:move-left-right 2s;
+}
+
+@keyframes move-left-right{
+    from{
+        margin-left:15%;
+    }
+    to{
+        margin-left:75%;
+    }
+}
+
+.middle-right{
+    animation:move-middle-right 1s;
+}
+
+@keyframes move-middle-right{
+    from{
+        margin-left:45%;
+    }
+    to{
+        margin-left:75%;
+    }
+}
+
+.middle-left{
+    animation:move-middle-left 1s;
+}
+
+@keyframes move-middle-left{
+    from{
+        margin-left:45%;
+    }
+    to{
+        margin-left:15%;
+    }
+}
+
+.right-left{
+    animation:move-right-left 2s;
+}
+
+@keyframes move-right-left{
+    from{
+        margin-left:75%;
+    }
+    to{
+        margin-left:15%;
+    }
+}
+
+.left-middle{
+    animation:move-left-middle 1s;
+}
+
+@keyframes move-left-middle{
+    from{
+        margin-left:15%;
+    }
+    to{
+        margin-left:45%;
+    }
+}
+
+.right-middle{
+    animation:move-right-middle 1s;
+}
+
+@keyframes move-right-middle{
+    from{
+        margin-left:75%;
+    }
+    to{
+        margin-left:45%;
+    }
+}
