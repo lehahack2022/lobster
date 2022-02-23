@@ -1,3 +1,26 @@
+function storeItem(item,itemName) {
+    const itemString = JSON.stringify(item);
+    localStorage.setItem(itemName,itemString);
+}
+
+function getItem(itemName) {
+    const itemString = localStorage.getItem(itemName);
+    return JSON.parse(itemString);
+}
+
+function newLobster() {
+    const nameBox = document.getElementById("lobster-name");
+    const name = nameBox.value;
+    const lobster = {
+        name,
+        birthDate: Date.now(), 
+        color: Math.round(Math.random()*190+60)
+    }
+    storeItem(lobster,"lobster");
+    nameBox.value = "";
+    render();
+}
+
 function removeClasses() {
     const lobster = document.getElementById("lobster");
     const lobsterClasses = lobster.classList;
@@ -79,9 +102,12 @@ function scuttleMiddle() {
 
 function lobsterEat() {
     const lobsterAteDate = new Date;
-    const lastFed = lobsterAteDate.toISOString();
-    localStorage.setItem("lastFed", lastFed);
+    const lastFed = {
+        date:lobsterAteDate.toISOString()
+    }
+    storeItem(lastFed, "lastFed");
     render();
+    //add result hunger level to last fed
 }
 
 const lastFedMessage = document.getElementById("last-fed-message");
@@ -89,22 +115,57 @@ const lastFedMessage = document.getElementById("last-fed-message");
 const hungerLevelDisplay = document.getElementById("hunger-level");
 
 function render() {
+    const lobster = getItem("lobster");
+    if(!lobster) {
+        document.getElementById("new-lobster-container").style.display = "block";
+        document.getElementById("button-container").style.display = "none";
+        document.getElementById("lobster").style.display = "none";
+    }
+    else {
+        document.getElementById("new-lobster-container").style.display = "none";
+        document.getElementById("button-container").style.display = "flex";
+        const lobsterElement = document.getElementById("lobster");
+        lobsterElement.style.display = "block";
+        lobsterElement.style.filter = `hue-rotate(${lobster.color}deg)`;
+    }
+
     const now = new Date;
-    const lastFed = new Date (Date.parse(localStorage.lastFed));
-    if(localStorage.lastFed)
-        lastFedMessage.innerHTML = "Lobster last ate: " + lastFed.toLocaleString();
-    else
-        lastFedMessage.innerHTML = "Brand new, hungry lobster";
-    //subtract last fed from now
-    const difference = now.valueOf()-lastFed.valueOf();
-    console.log(localStorage.lastFed);
-    //subtract previous number from 3 days
     const threeDays = 1000*60*60*24*3;
-    const hungryTime = threeDays-difference;
+    let lastFed = getItem("lastFed");
+    let lastFedDate;
+    let difference;
+
+    if(lastFed) {
+        lastFedDate = new Date (Date.parse(lastFed.date));
+        lastFedMessage.innerHTML = `${lobster.name} last ate: ${lastFedDate.toLocaleString()}`;
+        difference = now.valueOf()-lastFedDate.valueOf();
+        console.log(localStorage.lastFed);
+        //subtract previous number from 3 days
+    }
+    else
+        if(lobster) {
+            lastFedMessage.innerHTML = "Brand new, hungry lobster";
+            difference = (now.valueOf()-lobster.birthDate)+threeDays/2;
+        }
+        //subtract last fed from now
+        const hungryTime = threeDays-difference;
     const hungerLevel = Math.round((hungryTime/threeDays)*10000)/100;
-    hungerLevelDisplay.innerHTML = "The lobster is: " + hungerLevel + "% full";
+    if(lobster)
+        hungerLevelDisplay.innerHTML = `${lobster.name} is: ${hungerLevel >= 0? hungerLevel: 0}% full`;
     //divide by 3 days*100
     //display on screen
+    if (hungerLevel <= 0) {
+        let graveyard = getItem("graveyard");
+        if (!graveyard) {
+            graveyard = [];
+        }
+        lobster.deathDate = Date.now();
+        lobster.lastFed = lastFedDate.toLocaleString();
+        graveyard.push(lobster);
+        storeItem(graveyard,"graveyard");
+        localStorage.removeItem("lobster");
+        localStorage.removeItem("lastFed");
+    }
 }
 
 render();

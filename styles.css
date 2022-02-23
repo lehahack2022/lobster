@@ -19,6 +19,10 @@ button {
     padding: 8px;
 }
 
+#new-lobster-container {
+    display: none;
+}
+
 #tank {
     position: relative;
     height:50%;
@@ -49,8 +53,8 @@ button {
 #sand{
     position: absolute;
     bottom: 0px;
-    height:8%;
-    width:100%;
+    height: 14%;
+    width: 100%;
     background-color:rgb(231, 228, 188);
 }
 
@@ -61,7 +65,7 @@ img {
 
 #seaweed{
     position: absolute;
-    bottom: 20px;
+    bottom: 26px;
     display: flex;
     width:fit-content;
     justify-content: space-around;
