@@ -61,16 +61,18 @@ img {
 
 #seaweed{
     position: absolute;
-    margin-top: 41%;
+    bottom: 20px;
     display: flex;
+    width:fit-content;
     justify-content: space-around;
+    filter: blur(2px);
 }
 
 #lobster{
     position: absolute;
     bottom: -45px;
     font-size:40px;
-    width:fit-content;
+    width: fit-content;
     transform:rotate(90deg);
 }
 
