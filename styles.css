@@ -34,7 +34,7 @@ button {
 
 #button-container{
     margin-top:-10%;
-    display:flex;
+    display: flex;
     justify-content: space-evenly;
 }
 
@@ -52,6 +52,18 @@ button {
     height:8%;
     width:100%;
     background-color:rgb(231, 228, 188);
+}
+
+img {
+    width: 10%;
+    height: auto;
+  }
+
+#seaweed{
+    position: absolute;
+    margin-top: 41%;
+    display: flex;
+    justify-content: space-around;
 }
 
 #lobster{

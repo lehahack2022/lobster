@@ -1,26 +1,34 @@
 <html>
-    <head>
-        <link href="styles.css" rel="stylesheet"/>
-        <title>Virtual Lobster</title>
-    </head>
-    <body>
-        <script type="text/javascript" src="scripts.js"></script>
-        <div id="title" style="text-align: center;">
-            <h1>Virtual Lobster</h1>
-            <h2>Welcome to the Lobster Zone</h2>
+
+<head>
+    <link href="styles.css" rel="stylesheet" />
+    <title>Virtual Lobster</title>
+</head>
+
+<body>
+    <div id="title" style="text-align: center;">
+        <h1>Virtual Lobster</h1>
+        <h2>Welcome to the Lobster Zone</h2>
+        <br>
+        <h2 id="last-fed-message"></h2>
+        <h2 id="hunger-level"></h2>
+    </div>
+    <div id="tank">
+        <div id="air"></div>
+        <div id="button-container">
+            <button id="food-left" onclick="scuttleLeft();">Drop food here</button>
+            <button id="food-middle" onclick="scuttleMiddle();">Drop food here</button>
+            <button id="food-right" onclick="scuttleRight();">Drop food here</button>
         </div>
-            <div id="tank">
-                <div id="air"></div>
-                <div id="button-container">
-                    <button id="food-left" onclick="scuttleLeft();">Drop food here</button>
-                    <button id="food-middle" onclick="scuttleMiddle();">Drop food here</button>
-                    <button id="food-right" onclick="scuttleRight();">Drop food here</button>
-                </div>
-                <div id="sand"></div>
-                <p id="lobster" class="left">🦞</p>
-                <p id="leftFood" class="food left hidden">🦐</p>
-                <p id="middleFood" class="food middle hidden">🦐</p>
-                <p id="rightFood" class="food right hidden">🦐</p>
-        </div>
-    </body>
+        <div id="sand"></div>
+        <div id="seaweed"><img src="seaweed1.png"><img src="seaweed1.png"><img src="seaweed1.png"><img
+                src="seaweed1.png"></div>
+        <p id="lobster" class="left">🦞</p>
+        <p id="leftFood" class="food left hidden">🦐</p>
+        <p id="middleFood" class="food middle hidden">🦐</p>
+        <p id="rightFood" class="food right hidden">🦐</p>
+    </div>
+    <script type="text/javascript" src="scripts.js"></script>
+</body>
+
 </html>

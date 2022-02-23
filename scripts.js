@@ -5,13 +5,13 @@ function removeClasses() {
     lobsterClasses.remove(...movementClasses);
 }
 
-function showFood(food){
+function showFood(food) {
     const foodClasses = food.classList;
     foodClasses.remove("hidden")
     foodClasses.add("falling")
 }
 
-function hideFood(food){
+function hideFood(food) {
     const foodClasses = food.classList;
     foodClasses.add("hidden")
     foodClasses.remove("falling")
@@ -34,6 +34,7 @@ function scuttleRight() {
     lobsterClasses.add("right");
     lobsterClasses.remove("left");
     lobsterClasses.remove("middle");
+    lobsterEat();
 }
 
 function scuttleLeft() {
@@ -53,6 +54,7 @@ function scuttleLeft() {
     lobsterClasses.add("left");
     lobsterClasses.remove("right");
     lobsterClasses.remove("middle");
+    lobsterEat();
 }
 
 function scuttleMiddle() {
@@ -72,4 +74,39 @@ function scuttleMiddle() {
     lobsterClasses.add("middle");
     lobsterClasses.remove("left");
     lobsterClasses.remove("right");
+    lobsterEat();
 }
+
+function lobsterEat() {
+    const lobsterAteDate = new Date;
+    const lastFed = lobsterAteDate.toISOString();
+    localStorage.setItem("lastFed", lastFed);
+    render();
+}
+
+const lastFedMessage = document.getElementById("last-fed-message");
+
+const hungerLevelDisplay = document.getElementById("hunger-level");
+
+function render() {
+    const now = new Date;
+    const lastFed = new Date (Date.parse(localStorage.lastFed));
+    if(localStorage.lastFed)
+        lastFedMessage.innerHTML = "Lobster last ate: " + lastFed.toLocaleString();
+    else
+        lastFedMessage.innerHTML = "Brand new, hungry lobster";
+    //subtract last fed from now
+    const difference = now.valueOf()-lastFed.valueOf();
+    console.log(localStorage.lastFed);
+    //subtract previous number from 3 days
+    const threeDays = 1000*60*60*24*3;
+    const hungryTime = threeDays-difference;
+    const hungerLevel = Math.round((hungryTime/threeDays)*10000)/100;
+    hungerLevelDisplay.innerHTML = "The lobster is: " + hungerLevel + "% full";
+    //divide by 3 days*100
+    //display on screen
+}
+
+render();
+
+setInterval(render,1000);
