@@ -17,20 +17,32 @@
         <h2 id="last-fed-message"></h2>
         <h2 id="hunger-level"></h2>
     </div>
-    <div id="tank">
-        <div id="air"></div>
-        <div id="button-container">
-            <button id="food-left" onclick="scuttleLeft();">Drop food here</button>
-            <button id="food-middle" onclick="scuttleMiddle();">Drop food here</button>
-            <button id="food-right" onclick="scuttleRight();">Drop food here</button>
+    <div id="tank-container">
+        <div id="tank">
+            <div id="button-container">
+                <button id="food-left" onclick="scuttleLeft();">Drop food here</button>
+                <button id="food-middle" onclick="scuttleMiddle();">Drop food here</button>
+                <button id="food-right" onclick="scuttleRight();">Drop food here</button>
+            </div>
+            <div id="air"></div>
+            <div id="sand"></div>
+            <div id="seaweed"><img src="seaweed1.png"><img src="seaweed1.png"><img src="seaweed1.png"><img
+                    src="seaweed1.png"></div>
+            <p id="lobster" class="lobster left">🦞</p>
+            <p id="leftFood" class="food left hidden">🦐</p>
+            <p id="middleFood" class="food middle hidden">🦐</p>
+            <p id="rightFood" class="food right hidden">🦐</p>
         </div>
-        <div id="sand"></div>
-        <div id="seaweed"><img src="seaweed1.png"><img src="seaweed1.png"><img src="seaweed1.png"><img
-                src="seaweed1.png"></div>
-        <p id="lobster" class="left">🦞</p>
-        <p id="leftFood" class="food left hidden">🦐</p>
-        <p id="middleFood" class="food middle hidden">🦐</p>
-        <p id="rightFood" class="food right hidden">🦐</p>
+        <div id="side-panel">
+            <p>Lobster toolkit</p>
+            <select>
+                <option>Shrimp</option>
+                <option>Worm</option>
+                <option>Crab</option>
+            </select>
+            <br>
+            <a href="./graveyard.html">Lobster graveyard</a>
+        </div>
     </div>
     <script type="text/javascript" src="scripts.js"></script>
 </body>

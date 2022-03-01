@@ -23,17 +23,29 @@ button {
     display: none;
 }
 
+#tank-container {
+    display: flex;
+    width: 100%;
+    height: 60%;
+}
+
 #tank {
     position: relative;
-    height:50%;
     width:50%;
     margin-left:25%;
-    margin-top:15%;
+    margin-top:8%;
     border-left:#719c9e 5px solid;
     border-right:#719c9e 5px solid;
     border-bottom:#719c9e 5px solid;
     border-top:#acd2d4 3px double;
     background-color:#a8d9db;
+}
+
+#side-panel {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    padding-left: 2%;
 }
 
 #button-container{
@@ -72,12 +84,12 @@ img {
     filter: blur(2px);
 }
 
-#lobster{
+.lobster{
     position: absolute;
     bottom: -45px;
-    font-size:40px;
+    font-size: 40px;
     width: fit-content;
-    transform:rotate(90deg);
+    transform: rotate(90deg);
 }
 
 .food{
@@ -143,6 +155,7 @@ img {
 
 .middle-left{
     animation:move-middle-left 1s;
+    transform: rotate(-90deg);
 }
 
 @keyframes move-middle-left{
@@ -156,6 +169,7 @@ img {
 
 .right-left{
     animation:move-right-left 2s;
+    transform: rotate(-90deg);
 }
 
 @keyframes move-right-left{
@@ -182,6 +196,7 @@ img {
 
 .right-middle{
     animation:move-right-middle 1s;
+    transform: rotate(-90deg);
 }
 
 @keyframes move-right-middle{
@@ -191,4 +206,64 @@ img {
     to{
         margin-left:45%;
     }
+}
+
+/*Graveyard styles*/
+
+.grass {
+    background-color:rgb(81, 131, 28);
+}
+
+.sky {
+    background-color: rgb(255,255,255);
+    height: 70%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+#tree {
+    font-size: 300px;
+    position: absolute;
+    top: 25%;
+    right: 10%;
+    margin: 0;
+}
+
+#distant-tree {
+    font-size: 200px;
+    position: absolute;
+    top: 38%;
+    left: 15%;
+    margin: 0;
+    filter: blur(2px);
+}
+
+#graves-container {
+    width: 90%;
+    margin-top: 70vh;
+    margin-left: 5%;
+}
+
+#empty-grave {
+    display: none;
+}
+
+.grave {
+    display: inline;
+    font-size: 50px;
+    cursor: pointer;
+}
+
+#lobster-life {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+}
+
+#lobster-image {
+    font-size: 50px;
+    opacity: 0.7;
 }
