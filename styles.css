@@ -1,3 +1,15 @@
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+::-webkit-scrollbar-track {
+    background: rgb(255,255,255);
+  }
+  
+::-webkit-scrollbar-thumb {
+    background: rgb(69, 96, 54);
+  }
+
 h1 {
     color: #000000;
     font-family: arial, sans-serif;
@@ -10,6 +22,26 @@ h2 {
     font-family: arial, sans-serif;
     font-size: 12px;
 }
+
+p {
+    color: #646464;
+    font-family: arial, sans-serif;
+    font-size: 11px;
+}
+
+a {
+    color: #646464;
+    font-family: arial, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #a8a8a8;
+  }
 
 button {
     border-radius:12px;
@@ -46,6 +78,12 @@ button {
     flex-direction: column;
     width: 20%;
     padding-left: 2%;
+    text-align: center;
+}
+
+#graveyard-link {
+    font-size: 40px;
+    margin: 0;
 }
 
 #button-container{
@@ -79,7 +117,7 @@ img {
     position: absolute;
     bottom: 26px;
     display: flex;
-    width:fit-content;
+    width: fit-content;
     justify-content: space-around;
     filter: blur(2px);
 }
@@ -211,7 +249,7 @@ img {
 /*Graveyard styles*/
 
 .grass {
-    background-color:rgb(81, 131, 28);
+    background-color:rgb(106, 147, 84);
 }
 
 .sky {
@@ -221,6 +259,54 @@ img {
     position: absolute;
     top: 0;
     left: 0;
+    z-index: -3;
+}
+
+#clouds {
+    width: 30%;
+    height: 30%;
+    position: absolute;
+    justify-content: center;
+    margin-top: -250px;
+    z-index: -2;
+}
+
+#cloud-1 {
+    position: relative;
+    font-size: 200px;
+    top: -160%;
+    left: 125%;
+    margin: 0;
+    width: fit-content;
+    filter: blur(5px);
+}
+
+#cloud-2 {
+    position: relative;
+    font-size: 150;
+    top: -250%;
+    left: 155%;
+    margin: 0;
+    width: fit-content;
+    filter: blur(5px);
+}
+
+#tank-link {
+    position: relative;
+    top: -305%;
+    left: 140%;
+    margin: 0;
+    width: fit-content;
+    opacity: 60%;
+}
+
+#distant-tree {
+    font-size: 200px;
+    position: absolute;
+    top: 38%;
+    left: 15%;
+    margin: 0;
+    filter: blur(2px) saturate(50%);
     z-index: -1;
 }
 
@@ -230,20 +316,12 @@ img {
     top: 25%;
     right: 10%;
     margin: 0;
-}
-
-#distant-tree {
-    font-size: 200px;
-    position: absolute;
-    top: 38%;
-    left: 15%;
-    margin: 0;
-    filter: blur(2px);
+    filter: saturate(50%);
 }
 
 #graves-container {
     width: 90%;
-    margin-top: 70vh;
+    margin-top: 75vh;
     margin-left: 5%;
 }
 
@@ -255,12 +333,14 @@ img {
     display: inline;
     font-size: 50px;
     cursor: pointer;
+    filter: saturate(50%);
 }
 
 #lobster-life {
     position: absolute;
     top: 10%;
     left: 10%;
+    text-align: center;
 }
 
 #lobster-image {
