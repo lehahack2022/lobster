@@ -40,6 +40,14 @@ function hideFood(food) {
     foodClasses.remove("falling")
 }
 
+function changeFood() {
+    const menu = document.getElementById("menu");
+    const newFood = menu.value.split(" ")[0];
+    document.getElementById("leftFood").innerHTML = newFood;
+    document.getElementById("middleFood").innerHTML = newFood;
+    document.getElementById("rightFood").innerHTML = newFood;
+}
+
 function scuttleRight() {
     const lobster = document.getElementById("lobster");
     const lobsterClasses = lobster.classList;
