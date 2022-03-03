@@ -1,3 +1,5 @@
+let foodPoints = 5
+
 function storeItem(item,itemName) {
     const itemString = JSON.stringify(item);
     localStorage.setItem(itemName,itemString);
@@ -38,11 +40,14 @@ function hideFood(food) {
     const foodClasses = food.classList;
     foodClasses.add("hidden")
     foodClasses.remove("falling")
+    lobsterEat();
 }
 
 function changeFood() {
     const menu = document.getElementById("menu");
     const newFood = menu.value.split(" ")[0];
+    foodPoints = parseInt(menu.value.split(" ")[2]);
+    console.log (foodPoints)
     document.getElementById("leftFood").innerHTML = newFood;
     document.getElementById("middleFood").innerHTML = newFood;
     document.getElementById("rightFood").innerHTML = newFood;
@@ -65,7 +70,6 @@ function scuttleRight() {
     lobsterClasses.add("right");
     lobsterClasses.remove("left");
     lobsterClasses.remove("middle");
-    lobsterEat();
 }
 
 function scuttleLeft() {
@@ -85,7 +89,6 @@ function scuttleLeft() {
     lobsterClasses.add("left");
     lobsterClasses.remove("right");
     lobsterClasses.remove("middle");
-    lobsterEat();
 }
 
 function scuttleMiddle() {
@@ -105,13 +108,42 @@ function scuttleMiddle() {
     lobsterClasses.add("middle");
     lobsterClasses.remove("left");
     lobsterClasses.remove("right");
-    lobsterEat();
+}
+
+function getCurrentHungerLevel() {
+    const lobster = getItem("lobster");
+    const now = new Date;
+    const lastFed = getItem("lastFed");
+    let lastFedDate;
+    let difference;
+    let oldHungerLevel;
+
+    if(lastFed) {
+        oldHungerLevel = lastFed.hungerLevel;
+        if(!oldHungerLevel) oldHungerLevel = 100; //migrating old lobsters to new food system
+        lastFedDate = new Date (Date.parse(lastFed.date));
+        lastFedMessage.innerHTML = `${lobster.name} last ate: ${lastFedDate.toLocaleString()}`;
+        difference = now.valueOf()-lastFedDate.valueOf();
+    }
+    else
+        if(lobster) {
+            oldHungerLevel = 50;
+            lastFedMessage.innerHTML = "Brand new, hungry lobster";
+            difference = (now.valueOf()-lobster.birthDate);
+        }
+        //subtract last fed from now
+    return oldHungerLevel-Math.round(difference/2500)/100;
 }
 
 function lobsterEat() {
     const lobsterAteDate = new Date;
+    /*Retrieve last fed info
+    Work out current hunger level based on last fed
+    Work out new hunger level based on food value*/
+    const newHungerLevel = getCurrentHungerLevel() + foodPoints;
     const lastFed = {
-        date:lobsterAteDate.toISOString()
+        date:lobsterAteDate.toISOString(),
+        hungerLevel:newHungerLevel<=100? newHungerLevel:100
     }
     storeItem(lastFed, "lastFed");
     render();
@@ -137,27 +169,7 @@ function render() {
         lobsterElement.style.filter = `hue-rotate(${lobster.color}deg)`;
     }
 
-    const now = new Date;
-    const threeDays = 1000*60*60*24*3;
-    let lastFed = getItem("lastFed");
-    let lastFedDate;
-    let difference;
-
-    if(lastFed) {
-        lastFedDate = new Date (Date.parse(lastFed.date));
-        lastFedMessage.innerHTML = `${lobster.name} last ate: ${lastFedDate.toLocaleString()}`;
-        difference = now.valueOf()-lastFedDate.valueOf();
-        console.log(localStorage.lastFed);
-        //subtract previous number from 3 days
-    }
-    else
-        if(lobster) {
-            lastFedMessage.innerHTML = "Brand new, hungry lobster";
-            difference = (now.valueOf()-lobster.birthDate)+threeDays/2;
-        }
-        //subtract last fed from now
-        const hungryTime = threeDays-difference;
-    const hungerLevel = Math.round((hungryTime/threeDays)*10000)/100;
+    const hungerLevel = getCurrentHungerLevel();
     if(lobster)
         hungerLevelDisplay.innerHTML = `${lobster.name} is: ${hungerLevel >= 0? hungerLevel: 0}% full`;
     //divide by 3 days*100
@@ -168,6 +180,8 @@ function render() {
             graveyard = [];
         }
         lobster.deathDate = Date.now();
+        const lastFed = getItem("lastFed");
+        lastFedDate = new Date (Date.parse(lastFed.date));
         lobster.lastFed = lastFedDate.toLocaleString();
         graveyard.push(lobster);
         storeItem(graveyard,"graveyard");
