@@ -59,6 +59,9 @@ function scuttleRight() {
     removeClasses();
     const food = document.getElementById("rightFood");
     showFood(food);
+    if(lobsterClasses.contains("right")){
+        setTimeout(()=>hideFood(food), 1000);
+    }
     if(lobsterClasses.contains("left")){
         lobsterClasses.add("left-right") 
         setTimeout(()=>hideFood(food), 2000);
@@ -78,6 +81,9 @@ function scuttleLeft() {
     removeClasses();
     const food = document.getElementById("leftFood");
     showFood(food);
+    if(lobsterClasses.contains("left")){
+        setTimeout(()=>hideFood(food), 1000);
+    }
     if(lobsterClasses.contains("middle")){
         lobsterClasses.add("middle-left")
         setTimeout(()=>hideFood(food), 1000);
@@ -97,6 +103,9 @@ function scuttleMiddle() {
     removeClasses();
     const food = document.getElementById("middleFood");
     showFood(food);
+    if(lobsterClasses.contains("middle")){
+        setTimeout(()=>hideFood(food), 1000);
+    }
     if(lobsterClasses.contains("left")){
         lobsterClasses.add("left-middle")
         setTimeout(()=>hideFood(food), 1000);
