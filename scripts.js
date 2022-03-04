@@ -141,7 +141,7 @@ function getCurrentHungerLevel() {
             difference = (now.valueOf()-lobster.birthDate);
         }
         //subtract last fed from now
-    return oldHungerLevel-Math.round(difference/2500)/100;
+    return oldHungerLevel-Math.round(difference/25000)/100;
 }
 
 function lobsterEat() {
