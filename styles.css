@@ -46,8 +46,8 @@ a:hover {
 button {
     border-radius:12px;
     border: none;
-    background-color:#719c9e;
-    color:#ffffff;
+    background-color: #719c9e;
+    color: #ffffff;
     padding: 8px;
 }
 
@@ -63,14 +63,14 @@ button {
 
 #tank {
     position: relative;
-    width:50%;
-    margin-left:25%;
-    margin-top:8%;
-    border-left:#719c9e 5px solid;
-    border-right:#719c9e 5px solid;
-    border-bottom:#719c9e 5px solid;
-    border-top:#acd2d4 3px double;
-    background-color:#a8d9db;
+    width: 50%;
+    margin-left: 25%;
+    margin-top: 8%;
+    border-left: #719c9e 5px solid;
+    border-right: #719c9e 5px solid;
+    border-bottom: #719c9e 5px solid;
+    border-top: #acd2d4 3px double;
+    background-color: #a8d9db;
 }
 
 #side-panel {
